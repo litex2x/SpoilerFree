@@ -15,4 +15,4 @@ Usage:
 3.  Set seasons and episodes options. Submit when finished.
 4.  All season tags should render based on the season and episode options set by the user.
     
-    i.e.  <season id="1" episode="1">Snape kills Dumbledore</season>
+    i.e.  &lt;season id="1" episode="1"&gt;Snape kills Dumbledore&lt;/season&gt;
