@@ -17,10 +17,20 @@ $wgExtensionCredits['validextensionclass'][] = array(
 );
 
 $dir = dirname(__FILE__);
+$dirbasename = basename( $dir );
 $wgAutoloadClasses['SpoilerFreeHooks'] = $dir . '/SpoilerFree.hooks.php';
 $wgAutoloadClasses['SpecialSeasonsSelection'] = $dir . '/specials/SpecialSeasonsSelection.php';
 $wgExtensionMessagesFiles['SpoilerFree'] = $dir . '/SpoilerFree.i18n.php';
 $wgHooks['ParserFirstCallInit'][] = 'SpoilerFreeHooks::sfParserInit';
 $wgSpecialPages['SeasonsSelection'] = 'SpecialSeasonsSelection';
 $wgSpecialPageGroups['SeasonsSelection'] = 'other';
+$wgResourceModules['ext.SpoilerFree.season'] = array(
+		'scripts' => array(
+				'modules/ext.SpoilerFree.season.js'
+				),
+		'dependencies' => array(
+				'jquery'),
+		'localBasePath' => $dir,
+		'remoteExtPath' => 'SpoilerFree/'.$dirbasename	
+		);
 ?>
