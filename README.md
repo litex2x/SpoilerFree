@@ -6,10 +6,13 @@ Installation:
 1.  Copy the SpoilerFree directory into the mediawiki extensions folder or add a symbolic link pointing to it.
 
 2.  Go into your mediawiki LocalSettings.php and add the following line to bottom:
+    
     require_once("$IP/extensions/SpoilerFree/SpoilerFree.php");
 
 3.  Also in LocalSettings.php the following configuration variables need to be set like so in the following example:
+    
     $wgSpoilerFreeSeasonCount = 5;                          // Represents the amount of seasons in a show.
+    
     $wgSpoilerFreeEpisodeCounts = array(1, 2, 3, 4, 5);     // Represents the amount of episodes for each season.
 
 Usage:
