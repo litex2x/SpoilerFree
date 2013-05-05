@@ -13,11 +13,11 @@ class SpoilerFreeHooks {
 		$season = $wgUser->getOption('season');
 		$episode = $wgUser->getOption('episode');
 
-		if( $args['id'] <= $season && $args['episode'] <= $episode ) {
+		if($args['id'] < $season || $args['id'] == $season && $args['episode'] <= $episode) {
 			return $parser->recursiveTagParse( $input, $frame );
-		} else {
-			return '';
 		}
+		
+		return '';
 	}
 }
 ?>
