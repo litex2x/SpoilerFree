@@ -4,13 +4,19 @@ class SpecialSeasonsSelection extends SpecialPage {
 		parent::__construct( 'SeasonsSelection' );
 	}
 
-	public function execute( $sub ) {		
+	public function execute( $sub ) {	
+		global $wgSpoilerFreeEpisodeCounts;
+		global $wgSpoilerFreeSeasonCount;	
 		$out = $this->getOutput();
 		$request = $this->getRequest();
 		$user = $this->getUser();
 		$out->setPageTitle('Seasons Selection');
 		$out->addModules('ext.SpoilerFree.season');
 
+		if(!isset($wgSpoilerFreeEpisodeCounts) || !isset($wgSpoilerFreeSeasonCount)){
+			$out->addHTML('The Spoiler Free extension is not configured correctly!');
+		}
+		
 		if( !$user->isLoggedIn() ){
 			$out->addHTML('You must login to use this feature!');
 		} else if($request->wasPosted()) {
@@ -19,7 +25,10 @@ class SpecialSeasonsSelection extends SpecialPage {
 			
 			if($episode == '0' || !isset($episode)) {
 				$this->renderSeasonList($season, $out);
-				$this->renderEpisodeList($season, null, $out);
+				
+				if($season != '0'){
+					$this->renderEpisodeList($season, null, $out);
+				}
 			} else {
 				$user->setOption('season', $season);
 				$user->setOption('episode', $episode);
